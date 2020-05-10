@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.mapper.MallMerchantMapper" >
+
+  <resultMap id="MallMerchantMap" type="com.alibaba.entity.MallMerchant" autoMapping="true" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="merchandise" property="merchandise" jdbcType="VARCHAR" typeHandler="com.alibaba.handler.MyTypeHandler"/>
+    <result column="creationDate" property="creationDate" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findAll" resultMap="MallMerchantMap" >
+    select * from mall_merchant
+  </select>
+
+<!--  <select id="findByMerchandise" resultMap="MallMerchantMap" >-->
+<!--    select * from mall_merchant-->
+<!--    <where>-->
+<!--      <if test="merchandise != null">-->
+<!--        AND merchandise = #{merchandise, jdbcType = VARCHAR, typeHandler=com.alibaba.handler.MyTypeHandler }-->
+<!--      </if>-->
+<!--    </where>-->
+<!--  </select>-->
+
+  <insert id="insert" parameterType="com.alibaba.entity.MallMerchant" useGeneratedKeys="true">
+    insert into mall_merchant(merchandise, creationDate, creator)
+    values
+    (
+    #{merchandise, jdbcType = VARCHAR, typeHandler=com.alibaba.handler.MyTypeHandler },
+    #{creationDate, jdbcType = VARCHAR},
+    #{creator, jdbcType = INTEGER}
+    )
+  </insert>
+
+<!--  <insert id="insert" parameterType="com.alibaba.entity.MallMerchant" >-->
+<!--    insert into mall_merchant -->
+<!--    <trim prefix="(" suffix=")" suffixOverrides="," >-->
+<!--      <if test="id != null" >-->
+<!--        id,-->
+<!--      </if>-->
+<!--      <if test="merchandise != null" >-->
+<!--        merchandise,-->
+<!--      </if>-->
+<!--      <if test="creationDate != null" >-->
+<!--        creationDate,-->
+<!--      </if>-->
+<!--      <if test="creator != null" >-->
+<!--        creator,-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--    <trim prefix="values (" suffix=")" suffixOverrides="," >-->
+<!--      <if test="id != null" >-->
+<!--        #{id, jdbcType = INTEGER},-->
+<!--      </if>-->
+<!--      <if test="merchandise != null" >-->
+<!--        #{merchandise, jdbcType = VARCHAR, typeHandler = com.alibaba.handler.MyTypeHandler },-->
+<!--      </if>-->
+<!--      <if test="creationDate != null" >-->
+<!--        #{creationDate, jdbcType = VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="creator != null" >-->
+<!--        #{creator, jdbcType = INTEGER},-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--  </insert>-->
+</mapper>

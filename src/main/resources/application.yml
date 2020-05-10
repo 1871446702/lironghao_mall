@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    type:
+      com.alibaba.druid.pool.DruidDataSource
+    driverClassName:
+      com.mysql.cj.jdbc.Driver
+    url:
+      jdbc:mysql://localhost:3306/lironghao_mall?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username:
+      root
+    password:
+      root
+
+mybatis:
+  typeAliasesPackage: com.alibaba.entity
+  mapperLocations: classpath:mapper/*.xml
+
+server:
+  port: 8088
+  servlet:
+    context-path: /lironghao_mall
